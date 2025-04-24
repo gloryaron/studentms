@@ -1,0 +1,45 @@
+fabric:create --zookeeper-password=password
+
+fabric:create --zookeeper-password=password --force
+
+fabric:create --zookeeper-password=password --force --wait-for-provisioning
+fabric:create --clean --wait-for-provisioning --provision-timeout 1200000 --time 20000 --zookeeper-password=password
+
+fabric:create --clean --wait-for-provisioning --time 20000 --zookeeper-password=password
+
+fabric:container-create-child root container1
+
+-DskipTests
+
+-DskipTests=true -Dmaven.test.skip=true
+
+
+
+set KARAF_DEBUG=-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005
+
+
+mvn clean generate-sources
+
+mvn spring-boot:run -Drun.jvmArguments="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005" -->maven.log
+
+mvn clean spring-boot:run
+
+to clear mvn cache:
+mvn dependency:purge-local-repository
+
+nc -v mqp01.sq.com.sg 1414
+
+
+oc rollout cancel dc/svc-pnrlist
+oc rollout latest dc/svc-pnrlist
+
+oc project <project name>
+oc get po
+oc rsh <pod name>
+tail -100f <log name>
+oc logs -f <pod name>
+
+git clone --single-branch --branch OCPM-49 https://bitbucket.spark.sq.com.sg/scm/ice/csl-ice-seat-v2.git
+
+
+spring.profiles.active: dev

@@ -1,0 +1,55 @@
+1. run Fuse.bat
+2. change the credentials in users.prop
+3. run the command to create a root
+fabric:create --zookeeper-password=password
+fabric:create --zookeeper-password=password --wait-for-provisioning --force
+4. add fabric, camel , cxf to root
+5. go to wiki-> profiles ->default.profile ->io.fabric8.agent.prop
+
+org.ops4j.pax.url.mvn.defaultRepositories= \
+    file:${runtime.home}/${karaf.default.repository}@snapshots@id=karaf-default, \
+    file:${runtime.data}/maven/upload@snapshots@id=fabric-upload, \
+	file:E:/CSL/repository@snapshots@id=local
+    #file:${user.home}/.m2/repository@snapshots@id=local
+	
+
+patch.repositories=http://sindceaplxd65:8081/artifactory/libs-release
+
+org.ops4j.pax.url.mvn.repositories= \
+    file:${runtime.home}/${karaf.default.repository}@snapshots@id=karaf-default, \
+    file:${runtime.data}/maven/upload@snapshots@id=fabric-upload,\
+	http://sindceaplxd65:8081/artifactory/libs-release@id=internal.repo.release,\
+	http://sindceaplxd65:8081/artifactory/libs-snapshot@snapshots@id=internal.repo.snapshots
+
+6. create fabric profiles and add them to the container
+
+
+7. steps to build by setting the repo
+set KARAF_DEBUG=-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005
+
+
+set KARAF_DEBUG=true
+
+set JAVA_HOME=C:\Software\java-windows
+set M2_HOME=C:\Software\apache-maven-3.3.9
+set path=C:\Software\apache-maven-3.3.9\bin;%path%
+
+set JAVA_HOME=C:\Software\jdk-17.0.2
+set M2_HOME=C:\Software\apache-maven-3.3.3
+set path=C:\Software\apache-maven-3.3.3\bin;%path%
+
+
+KT:
+1. steps
+2. proxy
+3. GTM
+4. ocp deployment
+
+
+mvn:com.sia.csl/csl-datasource/1.0.3-SNAPSHOT/xml/features
+mvn:com.sia.csl/csl-pnrservice/5.6.1-SNAPSHOT/xml/features 
+
+{"clientUUID":"nDAsvuQaUSe2LEBj9mVhXu5_TVv1lMM1FgyH49FInKcRN1SAOsMm!422998514!1594183574554","clientID":"SAA","apiVersion":"5","request":{"bookingReference":"TZFU9J","bookingLastName":"TEST","channel":"BOTH"},"isLastTransaction":"true"}
+
+
+spring.profiles.active: dev
